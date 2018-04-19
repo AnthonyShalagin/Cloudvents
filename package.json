@@ -1,11 +1,32 @@
 {
-    "name": "node-api",
-    "main": "server.js",
-    "dependencies": {
-        "body-parser": "^1.0.2",
-        "express": "^4.0.0",
-        "faker": "^4.1.0",
-        "mongoose": "~3.6.13",
-        "nodemon": "^1.17.3"
-    }
+  "name": "api",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "express": "^4.0.0",
+    "faker": "^4.1.0",
+    "mongoose": "~3.6.13",
+    "nodemon": "^1.17.3"
+  },
+  "description": "",
+  "version": "1.0.0",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-cloudreach": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .", 
+    "fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyShalagin/Cloudvents.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnthonyShalagin/Cloudvents/issues"
+  },
+  "homepage": "https://github.com/AnthonyShalagin/Cloudvents#readme"
 }
