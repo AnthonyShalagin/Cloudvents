@@ -11,36 +11,34 @@ const appRouter = function (app) {
         if (!err && response.statusCode == 200) {
             const data = JSON.parse(body);
 
-
-            // for (var i = 0; i < data.events.length; i++) {
-            //     str += `${'<h3>' + '<b>'}${  data.events[i].group.urlname}</b>: ${
-            //          data.events[i].name  }</h3>`
-            //         + `<img src='https://blog.ipleaders.in/wp-content/uploads/2016/01/601px-Temporary_plate.svg_.png' alt='text' width='350px' height='190px'>`
-            //         + `<br><br><br>`;
-            // }
+            var photoLink = "";
 
             for (var i = 0; i < data.events.length; i++) {
+
+                getPhotoLink(data, function(photoLink) {
+                    console.log("photo link: " + photoLink);
+                });
+
                 str += `<h3><b>${data.events[i].group.urlname}</b>: 
                     <a href=${data.events[i].link}>${data.events[i].name}</a></h3>`
-                    + `<img src='https://blog.ipleaders.in/wp-content/uploads/2016/01/601px-Temporary_plate.svg_.png' alt='text' width='350px' height='190px'>`
+                    + `<img src=${photoLink}' alt='text' width='350px' height='190px'>`
                     + `<br><br><br>`;
             }
-
-
-
-            //'<a href= event[i].link> data.events[i].name </a>'
-
             res.send(str);
-
-            
-
-            // res.send(data);
         }
-
-            //TODO: Add summary
     });
-   });
-  
+
+    function getPhotoLink (data, callback) {
+            request.get(`https://api.meetup.com/${data.events[0].group.urlname}/photos?photo-host=public&page=1&sig_id=249656035&sig=d45dfd97d66d7cb1a5418f042363258386e3df15`, function(err, response, body) {
+
+                if (!err && response.statusCode == 200) {
+                    const photoURL = JSON.parse(body);
+
+                    callback(photoURL[0].highres_link);
+                }
+            });
+    }
+  }); 
 };
 
 module.exports = appRouter;
