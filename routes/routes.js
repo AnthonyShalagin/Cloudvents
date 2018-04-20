@@ -11,16 +11,30 @@ const appRouter = function (app) {
         if (!err && response.statusCode == 200) {
             const data = JSON.parse(body);
 
+
+            // for (var i = 0; i < data.events.length; i++) {
+            //     str += `${'<h3>' + '<b>'}${  data.events[i].group.urlname}</b>: ${
+            //          data.events[i].name  }</h3>`
+            //         + `<img src='https://blog.ipleaders.in/wp-content/uploads/2016/01/601px-Temporary_plate.svg_.png' alt='text' width='350px' height='190px'>`
+            //         + `<br><br><br>`;
+            // }
+
             for (var i = 0; i < data.events.length; i++) {
-            	str += `${'<h3>' + '<b>'}${  data.events[i].group.urlname  }</b>: ${
-                     data.events[i].name  }</h3>`
+                str += `<h3><b>${data.events[i].group.urlname}</b>: 
+                    <a href=${data.events[i].link}>${data.events[i].name}</a></h3>`
                     + `<img src='https://blog.ipleaders.in/wp-content/uploads/2016/01/601px-Temporary_plate.svg_.png' alt='text' width='350px' height='190px'>`
                     + `<br><br><br>`;
             }
 
-            // res.send(str);
 
-            res.send(data);
+
+            //'<a href= event[i].link> data.events[i].name </a>'
+
+            res.send(str);
+
+            
+
+            // res.send(data);
         }
 
             //TODO: Add summary
